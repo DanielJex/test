@@ -85,7 +85,7 @@ function updateStatistics($sessionId){
     $sql = "UPDATE statistics set views_count = views_count + 1, view_date = NOW() WHERE id = $sessionId";
 
     if ($mysqli->query($sql) !== TRUE) {
-        echo "ERROR";
+        showError();
     }
 }
 
@@ -111,5 +111,7 @@ if($sessionId !== 0) {
 } else {
     registerStatistics($ip, $userAgent, $pageUrl);
 }
+
+$mysqli->close();
 
 showBanner();
